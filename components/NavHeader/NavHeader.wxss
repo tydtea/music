@@ -1,0 +1,24 @@
+.header .title{
+  font-size: 26rpx;
+  color: #666;
+}
+.header .content{
+  /* height:80rpx;
+  line-height: 80rpx; */
+  display: flex;
+  line-height: 60rpx;
+}
+.header .content .recommendText{
+  flex:1;
+  font-size:30rpx;
+}
+.header .content .more{
+  width:100rpx;
+  font-size:20rpx;
+  border:1rpx solid #000;
+  border-radius: 20rpx;
+  height:50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  padding:0 20rpx;
+}

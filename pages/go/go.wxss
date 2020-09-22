@@ -1,0 +1,4 @@
+/* pages/go/go.wxss */
+.active{
+  background:red;
+}

@@ -1,0 +1,58 @@
+<view class="videoContainer">
+   <view class="header">
+      <image src="/static/images/video/video.jpg"></image>
+      <input placeholder-class="search" type="text" placeholder="光辉岁月"></input>
+      <image src="/static/images/logo.png"></image>
+   </view>
+   <!-- 视频标签导航 -->
+   <scroll-view 
+   scroll-x 
+   enable-flex 
+   scroll-with-animation
+   scroll-into-view="{{'scroll'+activeTagId}}"
+   class="tagScroll">
+      <view id="{{'scroll'+item.id}}"
+      data-id="{{item.id}}"
+      bindtap="changeTagId"
+       wx:for="{{groupList}}" wx:key="id" class="{{item.id===activeTagId?'active':''}}">{{item.name}}</view>
+   </scroll-view>
+
+   <scroll-view class="videoScoll" 
+   
+  refresher-enabled
+      bindrefresherrefresh="handleRefresher"
+      refresher-triggered="{{triggered}}"
+      bindscrolltolower="handleScrollLower"
+
+
+      
+   scroll-y enable-flex>
+       <view wx:for="{{videoList}}" wx:key="index" class="videoItem">
+         <video
+          id="{{item.data.vid}}"
+      wx:if="{{item.data.vid === vid}}"
+           class="conver" 
+         object-fit="fill"
+         poster="{{item.data.coverUrl}}"
+         src="{{item.data.urlInfo.url}}"></video>
+         <image data-vid="{{item.data.vid}}" wx:else bindtap="changeVid" class="conver" src="{{item.data.coverUrl}}"></image>
+         <view class="content">{{item.data.title}}</view>
+         <view class="footer">
+            <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>
+            <text class="nickname">{{item.data.creator.nickname}}</text>
+            <view class="icon">
+               <text class="iconfont icon-xinaixin">
+                  <text>{{item.data.praisedCount}}</text>
+               </text>
+               <text class="iconfont icon-pinglun">
+                  <text>{{item.data.commentCount}}</text>
+               </text>
+               <button data-title="{{item.data.title}}" data-img="{{item.data.coverUrl}}" open-type="share">
+                  <text class="iconfont icon-gengduo1"></text>
+               </button>
+               <!-- <text class="iconfont icon-gengduo1"></text> -->
+            </view>
+         </view>
+       </view>
+   </scroll-view>
+</view>

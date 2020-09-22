@@ -1,0 +1,17 @@
+<!-- 页面之间跳转 -->
+<navigator hover-class="active" url="/pages/login/login?a=1&b=2">跳转至登陆</navigator>
+<navigator open-type="redirect" url="/pages/login/login?c=3&d=4">并闭当前页面并跳转至登陆</navigator>
+
+<!-- 只能跳转至tabBar页面，且无法传参 -->
+<navigator open-type="switchTab" url="/pages/index/index?f=12">跳转至首页</navigator>
+
+<navigator open-type="switchTab" url="/pages/login/login">switchTab跳转至登陆</navigator>
+
+
+<navigator open-type="reLaunch" url="/pages/index/index?f=16">reLaunch跳转至首页</navigator>
+
+
+
+
+<button bindtap="goNavigate">navigate</button>
+<button bindtap="goReadirectTo">redirectTo</button>
