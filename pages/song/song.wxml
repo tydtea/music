@@ -4,8 +4,6 @@
   <!-- 摇秆 -->
   <image class="needle {{isPlay?'needleRotate':''}}" src="/static/images/song/needle.png"></image>
 
-
-
  <!-- 转起来 -->
   <view class="discContainer {{isPlay?'discRotate':''}}">
 

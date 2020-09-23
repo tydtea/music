@@ -24,6 +24,11 @@
 /* 播放列表 */
 .songList{
   padding:20rpx;
+  position: relative;
+  top:-20rpx;
+  background:#fff;
+  /* background:red; */
+  border-radius: 40rpx;
 }
 .songList .songHeader{
   display: flex;
