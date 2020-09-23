@@ -15,7 +15,9 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面加载  vuex  xp  xml j2ee .net c#
+   * 生命周期函数--监听页面加载  vuex  xp  xml j2ee .net c# gulp  webpack
+   * node vue-cli:服务代理   路由 uniapp  node->提供服务。 原生 koa express.
+   * express 
    */
   onLoad: async function (options) {
     // 调用视频标签列表
