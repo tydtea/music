@@ -1,8 +1,14 @@
 <view class="songContainer">
   <view class="class">{{info.author}}</view>
   <view class="dong"></view>
-  <image class="needle needleRotates" src="/static/images/song/needle.png"></image>
-  <view class="discContainer discRotates">
+  <!-- 摇秆 -->
+  <image class="needle {{isPlay?'needleRotate':''}}" src="/static/images/song/needle.png"></image>
+
+
+
+ <!-- 转起来 -->
+  <view class="discContainer {{isPlay?'discRotate':''}}">
+
     <image class="disc" src="/static/images/song/disc.png"></image>
     <image class="musicImg" src="{{info.picUrl}}"></image>
   </view>
@@ -13,14 +19,25 @@
   <view class="audioControl">
     <text>{{currentTime}}</text>
     <!-- 进度条总长度 -->
-    <view class="barControl">
-      <!-- 实时进度条-->
+    <!-- <view class="barControl">
+      
       <view class="audio-current-time" style='width:{{currentWidth}}rpx;'>
         <view class="audio-progress">
 
         </view>
       </view>
-    </view>
+    </view> -->
+
+    <slider block-size="12"
+    color="rgba(0, 0,0, 0.4)"
+    selected-color="#d43c33"
+     value="{{currentWidth}}" 
+     class="barControl" 
+     bindchange="change"
+     bindchanging="changing"
+     min="0" max="450"></slider>
+
+
     <text>{{info.durationTime}}</text>
   </view>
 

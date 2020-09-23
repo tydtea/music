@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isChange:false,// 设置一个中间值。true,点击中或拖拽中
     song:[],
     info:{},
     isPlay:false,// 是否处于播放状态。
@@ -23,6 +24,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function ({id}) {
+     globalData.backgroundAudioManager.onEnded(()=>{
+       console.log("播放完毕");
+       pubsub.publish("change","next");
+
+     })
+    // 更新完播放时间之后，更改 isChange 为false
+     globalData.backgroundAudioManager.onSeeked(()=>{
+       this.data.isChange = false;
+       console.log("onSeeked");
+     })
      
      // 侦听音频播放
      globalData.backgroundAudioManager.onPlay(()=>{
@@ -42,19 +53,25 @@ Page({
        })
      })
      // 监听背景音频播放进度更新事件，只有小程序在前台时会回调
-     globalData.backgroundAudioManager.onTimeUpdate(()=>{
-      // console.log("正在播放",this.backgroundAudioManager.duration,this.backgroundAudioManager.currentTime);
-      // 总时长
-      const duration = globalData.backgroundAudioManager.duration;
-      // 播放时间
-      const currentTime = globalData.backgroundAudioManager.currentTime;
-      //  红色区域 = 播放时间/总时间*灰色区域
-      const currentWidth = currentTime/duration*450;
-      this.setData({
-        currentWidth,
-        currentTime:moment(globalData.backgroundAudioManager.currentTime*1000).format("mm:ss")
-      })
-    })
+    //  globalData.backgroundAudioManager.onTimeUpdate(()=>{
+    //     this.upCurrentTime();
+    //  })
+
+    globalData.backgroundAudioManager.onTimeUpdate(this.upCurrentTime);
+
+    //  globalData.backgroundAudioManager.onTimeUpdate(()=>{
+    //   // console.log("正在播放",this.backgroundAudioManager.duration,this.backgroundAudioManager.currentTime);
+    //   // 总时长
+    //   const duration = globalData.backgroundAudioManager.duration;
+    //   // 播放时间
+    //   const currentTime = globalData.backgroundAudioManager.currentTime;
+    //   //  红色区域 = 播放时间/总时间*灰色区域
+    //   const currentWidth = currentTime/duration*450;
+    //   this.setData({
+    //     currentWidth,
+    //     currentTime:moment(globalData.backgroundAudioManager.currentTime*1000).format("mm:ss")
+    //   })
+    // })
     // 获得歌曲详情（包含地址信息）
     this.init(id);
     // 通过按钮控制音乐的播放。
@@ -65,6 +82,22 @@ Page({
     pubsub.subscribe("sendSongId",(msgName,songId)=>{
       console.log("得到了：",songId);
       this.init(songId);
+    })
+
+  },
+  upCurrentTime(){
+    if(this.data.isChange){
+        return ;
+    }
+    // 总时长
+    const duration = globalData.backgroundAudioManager.duration;
+    // 播放时间
+    const currentTime = globalData.backgroundAudioManager.currentTime;
+    //  红色区域 = 播放时间/总时间*灰色区域
+    const currentWidth = currentTime/duration*450;
+    this.setData({
+      currentWidth,
+      currentTime:moment(globalData.backgroundAudioManager.currentTime*1000).format("mm:ss")
     })
 
   },
@@ -82,23 +115,14 @@ Page({
         title: globalData.info.name
       })
       
+      this.upCurrentTime();
+     
 
-      // 总时长
-      const duration = globalData.backgroundAudioManager.duration;
-      // 播放时间
-      const currentTime = globalData.backgroundAudioManager.currentTime;
-      //  红色区域 = 播放时间/总时间*灰色区域
-      const currentWidth = currentTime/duration*450;
+
+
+      console.log(1111,globalData.backgroundAudioManager.paused)
       this.setData({
-        currentWidth,
-        currentTime:moment(globalData.backgroundAudioManager.currentTime*1000).format("mm:ss")
-      })
-
-
-
-      
-      this.setData({
-        isPlay: globalData.isPlay //true// 获得完数据之后，将音频处于播放状态。
+        isPlay: !globalData.backgroundAudioManager.paused//globalData.isPlay //true// 获得完数据之后，将音频处于播放状态。
       })
       return;
     }
@@ -161,11 +185,23 @@ Page({
     // 更改音频管理器的状态。
     if(this.data.isPlay){
       // 播放
-      this.backgroundAudioManager.play();
+      globalData.backgroundAudioManager.play();
     }else{
       // 暂停
-      this.backgroundAudioManager.pause();
+      globalData.backgroundAudioManager.pause();
     }
+  },
+  change(event){
+      this.data.isChange = true;
+    // 红色区域/灰色区域 = 播放时间/总时间
+      const currentTime = event.detail.value/450*(globalData.info.dt/1000);
+      globalData.backgroundAudioManager.seek(currentTime);
+      // this.data.isChange = false;
+      console.log("结束 ",event.detail)
+  },
+  changing(){
+    this.data.isChange = true;
+    // console.log("正在拖拽");
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
