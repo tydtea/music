@@ -11,17 +11,17 @@
 
   <!-- 进度条区域 -->
   <view class="audioControl">
-    <text>00:00</text>
+    <text>{{currentTime}}</text>
     <!-- 进度条总长度 -->
     <view class="barControl">
       <!-- 实时进度条-->
-      <view class="audio-current-time" style='width: 100rpx;'>
+      <view class="audio-current-time" style='width:{{currentWidth}}rpx;'>
         <view class="audio-progress">
 
         </view>
       </view>
     </view>
-    <text>00:00</text>
+    <text>{{info.durationTime}}</text>
   </view>
 
 
@@ -29,9 +29,12 @@
   <!-- 底部播放选项区域 -->
   <view class="musicControl">
     <text class="iconfont icon-iconsMusicyemianbofangmoshiRepeat" ></text>
-    <text class="iconfont icon-prev" id="pre"></text>
-    <text class="iconfont {{isPlay?'icon-zanting': 'icon-bofang'}} big" ></text>
-    <text class="iconfont icon-xiayishouxianxing" id="next"></text>
+    <!-- 上一首 -->
+    <text data-type="pre" bindtap="changeSong" class="iconfont icon-prev" id="pre"></text>
+    <!-- 播放按钮 -->
+    <text bindtap="changeIsPlay" class="iconfont {{isPlay?'icon-zanting': 'icon-bofang'}} big" ></text>
+    <!-- 下一首 -->
+    <text data-type="next" bindtap="changeSong" class="iconfont icon-xiayishouxianxing" id="next"></text>
     <text class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
   </view>
 </view>

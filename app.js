@@ -1,5 +1,5 @@
 //app.js
-App({
+const config = {
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -33,7 +33,15 @@ App({
       }
     })
   },
+  // 公共数据
   globalData: {
-    userInfo: null
+    userInfo: null,
+    isPlay:false,
+    // 定义音频管理器
+    backgroundAudioManager : wx.getBackgroundAudioManager(),
+    // 声明当前正在播放的音乐ID
+    songId:0,
+    info:{}
   }
-})
+}
+App(config)
