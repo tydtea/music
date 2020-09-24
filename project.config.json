@@ -92,6 +92,13 @@
 					"pathName": "pages/song/song",
 					"query": "id=31445554",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/openId/openId",
+					"pathName": "pages/openId/openId",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

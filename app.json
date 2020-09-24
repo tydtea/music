@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/go/go",
     "pages/index/index",
     "pages/personal/personal",
     "pages/video/video",
     "pages/login/login",
-   
+    "pages/go/go",
     "pages/recommendSong/recommendSong",
-    "pages/song/song"
+    "pages/song/song",
+    "pages/openId/openId"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -39,7 +39,12 @@
       }
     ]
   },
-  "requiredBackgroundModes": ["audio"],
+  "networkTimeout": {
+    "request": 10000
+  },
+  "requiredBackgroundModes": [
+    "audio"
+  ],
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

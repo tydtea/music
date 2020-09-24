@@ -17,4 +17,8 @@
 
 <button bindtap="goNavigate">navigate</button>
 <button bindtap="goReadirectTo">redirectTo</button>
+
+
+<!-- 获取个人信息 -->
+<button bindgetuserinfo="userInfo" open-type="getUserInfo">获取个人信息</button>
 </view>

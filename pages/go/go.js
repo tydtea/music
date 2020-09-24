@@ -17,6 +17,10 @@ Page({
       url: '/pages/login/login?c=9',
     })
   },
+  userInfo(e){
+    console.log(e);
+   
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -24,6 +24,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function ({id}) {
+    const channel = this.getOpenerEventChannel();
+    channel.on("two",(a,b,c,d)=>{
+      console.log("song.js->two",a,b,c,d);
+    })
+
+
+
+    console.log("song",getCurrentPages());
      globalData.backgroundAudioManager.onEnded(()=>{
        console.log("播放完毕");
        pubsub.publish("change","next");
@@ -178,18 +186,22 @@ Page({
   },
   // 点击播放按钮
   changeIsPlay(){
-    // 将isPlay进行取反操作
-    this.setData({
-      isPlay:!this.data.isPlay
-    })
-    // 更改音频管理器的状态。
-    if(this.data.isPlay){
-      // 播放
-      globalData.backgroundAudioManager.play();
-    }else{
-      // 暂停
-      globalData.backgroundAudioManager.pause();
-    }
+    // 获得通讯渠道。
+    const channel = this.getOpenerEventChannel();
+    // 触发函数。
+    channel.emit("one",1,2,3,4);
+    // // 将isPlay进行取反操作
+    // this.setData({
+    //   isPlay:!this.data.isPlay
+    // })
+    // // 更改音频管理器的状态。
+    // if(this.data.isPlay){
+    //   // 播放
+    //   globalData.backgroundAudioManager.play();
+    // }else{
+    //   // 暂停
+    //   globalData.backgroundAudioManager.pause();
+    // }
   },
   change(event){
       this.data.isChange = true;

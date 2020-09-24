@@ -16,6 +16,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+    // getCurrentPages是一个函数，返回的是一个数组。数组的元素是页面的实例（对象）
+    //  console.log(getCurrentPages());
+
      const times = new Date();
      this.setData({
        date:times.getDate(),
@@ -65,6 +68,23 @@ Page({
     this.songId = e.currentTarget.id/1;
     wx.navigateTo({
       url: '../song/song?id='+this.songId,
+      events:{
+        // 自定义的事件one.可以在song.js内调用该事件。
+            // const channel = this.getOpenerEventChannel();
+            // 触发函数。
+            // channel.emit("one",1,2,3,4);
+        one:(a,b,c,d)=>{
+          console.log("one",a,b,c,d,this);
+          this.setData({
+            recommendList:[]
+          })
+        }
+      },
+      success(res){
+        // 当跳转完成之后执行该回调。
+        res.eventChannel.emit("two",1,2,3,4);
+        console.log("跳转了以后执行")
+      }
     })
   },
   /**

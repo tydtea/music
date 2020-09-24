@@ -1,0 +1,2 @@
+<button bindtap="getOpenId">获取openId</button>
+<button bindtap="getDailyRetain">getDailyRetain</button>
