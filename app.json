@@ -5,10 +5,28 @@
     "pages/video/video",
     "pages/login/login",
     "pages/go/go",
-    "pages/recommendSong/recommendSong",
-    "pages/song/song",
-    "pages/openId/openId"
+    "pages/openId/openId",
+    "pages/payment/payment"
   ],
+  "subpackages": [
+    {
+      "root": "song",
+      "name": "lala",
+      "pages": [
+        "pages/recommendSong/recommendSong",
+        "pages/song/song"
+      ],
+      "independent": true
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": [
+        "lala"
+      ]
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#d43c33",

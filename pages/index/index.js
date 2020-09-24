@@ -156,7 +156,7 @@ Page({
   },
   goCommendSong(){
     wx.navigateTo({
-      url: '../recommendSong/recommendSong',
+      url: '../../song/pages/recommendSong/recommendSong',
     })
   },
   /**

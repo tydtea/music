@@ -1,5 +1,5 @@
 // pages/recommendSong/recommendSong.js
-const axios = require("../../utils/axios");
+const axios = require("../../../utils/axios");
 const pubsub = require("pubsub-js");
 Page({
 

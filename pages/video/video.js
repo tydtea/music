@@ -165,7 +165,7 @@ Page({
    */
   onShareAppMessage: function (e) {
       console.log(1111,e);
-      if(e.target){
+      if(e.from === "button"){
         return {
           title:e.target.dataset.title,
           path:"/pages/video/video",

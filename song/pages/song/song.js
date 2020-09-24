@@ -1,5 +1,5 @@
 // pages/song/song.js
-const axios = require("../../utils/axios");
+const axios = require("../../../utils/axios");
 const moment = require("moment");
 const pubsub = require("pubsub-js");
 // 获得全局唯一app实例

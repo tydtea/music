@@ -1,6 +1,6 @@
 <view class="recommendContainer">
   <view class="header">
-     <image src="/static/images/recommendSong/recommendSong.jpg"></image>
+     <image src="../../static/images/recommendSong/recommendSong.jpg"></image>
      <text>{{date}}/{{month}}</text>
   </view>
   <view class="songList">

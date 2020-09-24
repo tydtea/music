@@ -99,6 +99,13 @@
 					"pathName": "pages/openId/openId",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/payment/payment",
+					"pathName": "pages/payment/payment",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
